@@ -24,21 +24,22 @@ class EmployeeServiceImplTest {
     @Test
     public void testAddExceptionCheck() {
         out.add(FIRST_NAME_2, LAST_NAME_2, DEPARTMENT_2, SALARY_2);
-        Assertions.assertThrowsExactly(EmployeeExistsException.class, () -> out.add(FIRST_NAME_2, LAST_NAME_2, DEPARTMENT_2, SALARY_2));
+        Assertions.assertThrowsExactly(EmployeeExistsException.class,
+                () -> out.add(FIRST_NAME_2, LAST_NAME_2, DEPARTMENT_2, SALARY_2));
     }
 
     @Test
     public void testRemove() {
         out.add(FIRST_NAME_2, LAST_NAME_2, DEPARTMENT_2, SALARY_2);
-        Employee employee = out.remove(FIRST_NAME_2,LAST_NAME_2);
-        Employee expectedEmployee = new Employee(FIRST_NAME_2, LAST_NAME_2);
+        Employee employee = out.remove(FIRST_NAME_2, LAST_NAME_2, DEPARTMENT_2, SALARY_2);
+        Employee expectedEmployee = new Employee(FIRST_NAME_2, LAST_NAME_2, DEPARTMENT_2, SALARY_2);
         Assertions.assertEquals(expectedEmployee, employee);
     }
 
     @Test
     public void testRemoveExceptionCheck() {
-        out.add(FIRST_NAME_2, LAST_NAME_2, DEPARTMENT_2, SALARY_2);
-        Assertions.assertThrowsExactly(NoEmployeeFoundException.class, () -> out.remove(FIRST_NAME_2, LAST_NAME_2));
+        Assertions.assertThrows(NoEmployeeFoundException.class,
+                () -> out.remove(FIRST_NAME_2, LAST_NAME_2, DEPARTMENT_2, SALARY_2));
     }
 
     @Test

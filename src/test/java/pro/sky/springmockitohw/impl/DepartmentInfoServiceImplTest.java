@@ -13,11 +13,11 @@ import pro.sky.springmockitohw.data.Employee;
 import pro.sky.springmockitohw.exceptions.NoEmployeeFoundException;
 import pro.sky.springmockitohw.service.EmployeeService;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 
-import static org.mockito.Mockito.when;
 import static pro.sky.springmockitohw.impl.EmployeeServiceTestConstants.*;
 import static pro.sky.springmockitohw.impl.EmployeeServiceTestConstants.SALARY_1;;
 
@@ -63,10 +63,10 @@ public class DepartmentInfoServiceImplTest {
 
     @Test
     public void testGetEmployeesByDepartment() {
-        Map<Integer, List<Employee>> expectedEmployee = Map.of(DEPARTMENT_1, List.of(
-                        new Employee(FIRST_NAME_1, LAST_NAME_1, DEPARTMENT_1, SALARY_1),
-                        new Employee(FIRST_NAME_3, LAST_NAME_3, DEPARTMENT_1, SALARY_3)));
-        Map<Integer, List<Employee>> employee = out.getEmployeesByDepartment();
+        Collection<Employee> employee = out.getEmployeesByDepartment(DEPARTMENT_1);
+        List<Employee> expectedEmployee = List.of(new Employee(FIRST_NAME_1, LAST_NAME_1, DEPARTMENT_1, SALARY_1),
+                                        new Employee(FIRST_NAME_3, LAST_NAME_3, DEPARTMENT_1, SALARY_3));
         Assertions.assertEquals(expectedEmployee,employee);
+        Assertions.assertTrue(expectedEmployee.containsAll(employee));
     }
 }

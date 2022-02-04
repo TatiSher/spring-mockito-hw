@@ -39,13 +39,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
-    public Employee remove(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    @Override
+    public Employee remove(String firstName, String lastName, int department, int salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
         String key = getKey(employee);
-        if(employees.containsKey(key)) {
+        if(!employees.containsKey(key)) {
             throw new NoEmployeeFoundException();
         }
-        employees.remove(key,employee);
+        employees.remove(key);
         return employee;
     }
 

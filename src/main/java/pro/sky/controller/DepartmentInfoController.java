@@ -32,7 +32,7 @@ public class DepartmentInfoController {
 
     @GetMapping(path = "/all")
     Map<Integer, List<Employee>> getEmployeesByDepartment(@RequestParam("departmentId") int department) {
-        return departmentInfoService.getEmployeesByDepartment(department);
+        return (Map<Integer, List<Employee>>) departmentInfoService.getEmployeesByDepartment(department);
     }
 
     @GetMapping(path = "/all", params = {"departmentId"})

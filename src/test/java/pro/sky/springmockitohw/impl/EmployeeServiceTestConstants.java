@@ -1,5 +1,7 @@
 package pro.sky.springmockitohw.impl;
 
+import pro.sky.springmockitohw.data.Employee;
+
 public interface EmployeeServiceTestConstants {
 
 //    employeeInfo1

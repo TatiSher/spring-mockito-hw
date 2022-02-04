@@ -27,14 +27,15 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/remove")
-    public String remove(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
-        employeeService.remove(firstName, lastName);
+    public String remove(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+                         @RequestParam("departmentId") int department, @RequestParam("salary") int salary) {
+        employeeService.remove(firstName, lastName, department, salary);
         return "Сотрудник " + firstName + " " + lastName + " успешно удалён.";
     }
 
     @GetMapping(path = "/find")
     public String find(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
-        employeeService.remove(firstName, lastName);
+        employeeService.find(firstName, lastName);
         return "Сотрудник: " + firstName + " " + lastName;
     }
 

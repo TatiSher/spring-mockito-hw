@@ -6,10 +6,7 @@ import pro.sky.springmockitohw.exceptions.NoEmployeeFoundException;
 import pro.sky.springmockitohw.service.DepartmentInfoService;
 import pro.sky.springmockitohw.service.EmployeeService;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,16 +35,18 @@ public class DepartmentInfoServiceImpl implements DepartmentInfoService {
     }
 
     @Override
-    public Map<Integer, List<Employee>> getEmployeesByDepartment(int department) {
-        return (Map<Integer, List<Employee>>) employeeService.getEmployees().stream()
+    public Collection<Employee> getEmployeesByDepartment(int department) {
+        return (Collection<Employee>) employeeService.getEmployees().stream()
                 .filter(employee -> employee.getDepartment(department))
                 .collect(Collectors.toList());
+
     }
 
     @Override
     public Map<Integer, List<Employee>> getAllEmployees() {
         return employeeService.getEmployees().stream()
-                .collect(Collectors.groupingBy(employee -> employee.getDepartment()));
+                .collect(Collectors.groupingBy(Employee::getDepartment));
+
     }
 
 }

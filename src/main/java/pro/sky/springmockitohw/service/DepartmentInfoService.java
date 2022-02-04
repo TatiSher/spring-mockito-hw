@@ -2,6 +2,7 @@ package pro.sky.springmockitohw.service;
 
 import pro.sky.springmockitohw.data.Employee;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ public interface DepartmentInfoService {
 
     Employee getEmployeeWithMinSalary(int department);
 
-    Map<Integer, List<Employee>> getAllEmployees();
+    Collection<Employee> getEmployeesByDepartment(int department);
 
-    Map<Integer, List<Employee>> getEmployeesByDepartment(int department);
+    Map<Integer, List<Employee>> getAllEmployees();
 }
